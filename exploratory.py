@@ -164,21 +164,20 @@ plt.close()
 
 # Brekdown a kde of age among for this days.
 tmp = raw.loc[(raw['Dayweek'] == 'Friday') | (raw['Dayweek'] == 'Saturday') | (raw['Dayweek'] == 'Sunday'), :]
-deadlyHours = tmp.groupby(['Dayweek', 'Hour'])['Crash ID'].agg({'DeathCount': len}).reset_index()
 
 g = sns.FacetGrid(col="Dayweek", data=tmp,
-                  sharey = True, despine = True,
+                  sharey = True, despine = True, 
                   palette="muted", legend_out = False)
 
-g.map(sns.kdeplot, 'Age')
+g.map(sns.kdeplot, 'Age', clip = [20,100])
 titles = ["Friday", "Saturday", "Sunday"]
 for ax, title in zip(g.axes.flat, titles):
     ax.set_title(title)
 g.despine(left=True)
 g.set_ylabels("Number of people died on road")
-g.set_xlabels('Hour of the Day')
+g.set_xlabels('Age')
 g.set_xticklabels(step = 1)
-g.savefig('images/DeadlyHours.png', dpi=300, figsize = (18.5, 10.5))
+g.savefig('images/age_deadlyHours.png', dpi=300, figsize = (18.5, 10.5))
 plt.close()
 
 
