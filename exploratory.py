@@ -174,10 +174,10 @@ titles = ["Friday", "Saturday", "Sunday"]
 for ax, title in zip(g.axes.flat, titles):
     ax.set_title(title)
 g.despine(left=True)
-g.set_ylabels("Number of people died on road")
+g.set_ylabels("Kernel Density")
 g.set_xlabels('Age')
 g.set_xticklabels(step = 1)
-g.savefig('images/age_deadlyHours.png', dpi=300, figsize = (18.5, 10.5))
+g.savefig('images/age_deadlyHours.png', dpi=400, figsize = (18.5, 10.5))
 plt.close()
 
 
